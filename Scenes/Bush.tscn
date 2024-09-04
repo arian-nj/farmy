@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbnfnf1m2voq7"]
+
+[ext_resource type="Script" path="res://Scenes/bush.gd" id="1_dvdq1"]
+[ext_resource type="PackedScene" uid="uid://c2nx175p7ycd7" path="res://interaction/interaction area/interaction_area.tscn" id="2_gsu3l"]
+[ext_resource type="Texture2D" uid="uid://x1b71pmn8a20" path="res://Assets/farm/Objects/Basic_Grass_Biom_things.png" id="3_51oun"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1napi"]
+size = Vector2(42, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjpwk"]
+atlas = ExtResource("3_51oun")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f2km"]
+atlas = ExtResource("3_51oun")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yah02"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjpwk")
+}],
+"loop": true,
+"name": &"dont",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f2km")
+}],
+"loop": true,
+"name": &"have",
+"speed": 5.0
+}]
+
+[node name="Bush" type="Node2D"]
+script = ExtResource("1_dvdq1")
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_gsu3l")]
+action_name = "cut"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(15, 14)
+shape = SubResource("RectangleShape2D_1napi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(13.5, 11.5)
+scale = Vector2(2.6875, 2.4375)
+sprite_frames = SubResource("SpriteFrames_yah02")
+animation = &"dont"
+autoplay = "have"

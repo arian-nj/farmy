@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqo5wuyketnv0"]
+
+[ext_resource type="Texture2D" uid="uid://b000n16wemxsq" path="res://Assets/farm/Objects/Basic_tools_and_meterials.png" id="1_0i3ju"]
+[ext_resource type="Script" path="res://Scripts/scroll_container.gd" id="1_54oe6"]
+[ext_resource type="Texture2D" uid="uid://db5hog25r2i6s" path="res://Assets/farm/Objects/Basic_Plants.png" id="2_8xfjx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yt3q"]
+atlas = ExtResource("1_0i3ju")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cetj0"]
+atlas = ExtResource("2_8xfjx")
+region = Rect2(0, 0, 16, 16)
+
+[node name="ScrollContainer" type="ScrollContainer"]
+clip_contents = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical_scroll_mode = 0
+script = ExtResource("1_54oe6")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CardMenu1" type="TextureRect" parent="CenterContainer/MarginContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.3)
+layout_mode = 2
+texture = SubResource("AtlasTexture_4yt3q")
+
+[node name="CardMenu2" type="TextureRect" parent="CenterContainer/MarginContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.3)
+layout_mode = 2
+texture = SubResource("AtlasTexture_cetj0")
